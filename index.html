@@ -42,8 +42,8 @@ a{color:var(--blue)}
   font-weight:850;letter-spacing:.12em;text-transform:uppercase
 }
 h1,h2,h3{color:var(--ink)}
-h1{font-size:clamp(2.6rem,5vw,4.75rem);line-height:.98;letter-spacing:-.045em;margin:0;max-width:920px}
-h2{font-size:clamp(1.95rem,3vw,3rem);line-height:1.08;letter-spacing:-.03em;margin:0 0 20px}
+h1{font-size:clamp(2.35rem,4.4vw,4rem);line-height:1.02;letter-spacing:-.04em;margin:0;max-width:900px}
+h2{font-size:clamp(1.7rem,2.5vw,2.4rem);line-height:1.12;letter-spacing:-.025em;margin:0 0 18px}
 h3{margin:0 0 8px;line-height:1.25}
 p{color:var(--muted)}
 
@@ -156,19 +156,26 @@ p{color:var(--muted)}
 .speaker-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 .speaker-card{
   background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-  padding:25px;display:flex;gap:17px;align-items:flex-start
+  padding:23px;display:grid;grid-template-columns:92px 1fr;gap:18px;align-items:start
+}
+.person-photo-wrap{position:relative;width:92px;height:92px}
+.person-photo{
+  width:92px;height:92px;border-radius:50%;object-fit:cover;
+  border:1px solid var(--line);background:#edf2f7;display:block
 }
 .initials{
-  width:54px;height:54px;flex:0 0 54px;border-radius:50%;
-  display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:850
+  position:absolute;inset:0;width:92px;height:92px;border-radius:50%;
+  display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:850;font-size:1.18rem
 }
-.affiliation{margin:2px 0 12px;font-size:.91rem}
+.affiliation{margin:2px 0 11px;font-size:.89rem}
 .talk{color:var(--ink)!important;font-weight:650;margin:0}
 
-.people-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-.person-card{border:1px solid var(--line);border-radius:14px;padding:21px;background:#fff}
-.person-card p{margin:3px 0;font-size:.9rem}
-.person-card a{font-size:.88rem}
+.organizer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.organizer-card{border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:#fff;text-align:center}
+.organizer-card .person-photo-wrap{margin:0 auto 15px;width:104px;height:104px}
+.organizer-card .person-photo,.organizer-card .initials{width:104px;height:104px}
+.organizer-card p{margin:3px 0;font-size:.88rem}
+.organizer-card a{font-size:.86rem}
 .pc-wrap{margin-top:48px}
 .pc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px 28px}
 .pc-grid p{margin:0;padding:11px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column}
@@ -192,7 +199,7 @@ footer{background:#0d1a29;color:#dce7ef;padding:27px 0}
   .hero-grid,.about-grid,.cfp-intro{grid-template-columns:1fr}
   .hero-card{max-width:540px}
   .date-grid{grid-template-columns:repeat(2,1fr)}
-  .people-grid{grid-template-columns:1fr}
+  .organizer-grid{grid-template-columns:1fr}
   .format-grid{grid-template-columns:1fr}
   .review-box{grid-template-columns:1fr}
   .news-grid{grid-template-columns:100px 1fr}
@@ -211,6 +218,8 @@ footer{background:#0d1a29;color:#dce7ef;padding:27px 0}
   .news-grid{grid-template-columns:1fr}
   .news-item:last-child{grid-column:auto}
   .topic-list,.date-grid,.speaker-grid,.pc-grid{grid-template-columns:1fr}
+  .speaker-card{grid-template-columns:76px 1fr}
+  .speaker-card .person-photo-wrap,.speaker-card .person-photo,.speaker-card .initials{width:76px;height:76px}
 }
 </style>
 </head>
@@ -261,7 +270,7 @@ footer{background:#0d1a29;color:#dce7ef;padding:27px 0}
     <aside class="hero-card">
       <p class="section-label">At a glance</p>
       <div class="row"><span>Format</span><strong>Half-day workshop</strong></div>
-      <div class="row"><span>Invited program</span><strong>2 confirmed talks</strong></div>
+      <div class="row"><span>Invited program</span><strong>2 invited talks</strong></div>
       <div class="row"><span>Proceedings</span><strong>ICDE workshop proceedings</strong></div>
       <div class="row"><span>Location</span><strong>Copenhagen, Denmark</strong></div>
     </aside>
@@ -286,7 +295,7 @@ footer{background:#0d1a29;color:#dce7ef;padding:27px 0}
   <div class="container about-grid">
     <div class="prose">
       <p class="section-label">About AIDDO</p>
-      <h2>Intelligent database design across the data-system lifecycle</h2>
+      <h2>About the Workshop</h2>
       <p>Database design and optimization increasingly require decisions across conceptual, logical, and physical levels while workloads, data characteristics, and system requirements continue to evolve. AI and machine learning create new opportunities for cost and performance estimation, design-space exploration, prediction, adaptation, and automated decision-making.</p>
       <p>AIDDO brings together researchers and practitioners working on intelligent database design and optimization across relational, NoSQL, multi-model, temporal, graph, vector, and heterogeneous data systems. The workshop also welcomes broader AI-for-data-management contributions that connect to database design, optimization, adaptation, schema evolution, or the evolution of data-intensive systems.</p>
     </div>
@@ -402,10 +411,13 @@ footer{background:#0d1a29;color:#dce7ef;padding:27px 0}
 <section class="section" id="speakers">
   <div class="container">
     <p class="section-label">Invited Talks</p>
-    <h2>Confirmed invited speakers</h2>
+    <h2>Invited Speakers</h2>
     <div class="speaker-grid">
       <article class="speaker-card">
-        <div class="initials">SS</div>
+        <div class="person-photo-wrap">
+          <img class="person-photo" src="images/shelly-sachdeva.jpg" alt="Shelly Sachdeva" onerror="this.style.display='none';">
+          <div class="initials">SS</div>
+        </div>
         <div>
           <h3>Shelly Sachdeva</h3>
           <p class="affiliation">National Institute of Technology Delhi, India</p>
@@ -413,7 +425,10 @@ footer{background:#0d1a29;color:#dce7ef;padding:27px 0}
         </div>
       </article>
       <article class="speaker-card">
-        <div class="initials">FB</div>
+        <div class="person-photo-wrap">
+          <img class="person-photo" src="images/francesca-bugiotti.jpg" alt="Francesca Bugiotti" onerror="this.style.display='none';">
+          <div class="initials">FB</div>
+        </div>
         <div>
           <h3>Francesca Bugiotti</h3>
           <p class="affiliation">CentraleSupélec, France</p>
@@ -433,19 +448,31 @@ footer{background:#0d1a29;color:#dce7ef;padding:27px 0}
 <section class="section alt" id="organization">
   <div class="container">
     <p class="section-label">Organization</p>
-    <h2>Workshop organizers</h2>
-    <div class="people-grid">
-      <article class="person-card">
+    <h2>Workshop Organizers</h2>
+    <div class="organizer-grid">
+      <article class="organizer-card">
+        <div class="person-photo-wrap">
+          <img class="person-photo" src="images/johann-gamper.jpg" alt="Johann Gamper" onerror="this.style.display='none';">
+          <div class="initials">JG</div>
+        </div>
         <h3>Johann Gamper</h3>
         <p>Free University of Bozen-Bolzano, Italy</p>
         <a href="mailto:johann.gamper@unibz.it">johann.gamper@unibz.it</a>
       </article>
-      <article class="person-card">
+      <article class="organizer-card">
+        <div class="person-photo-wrap">
+          <img class="person-photo" src="images/maryam-mozaffari.jpg" alt="Maryam Mozaffari" onerror="this.style.display='none';">
+          <div class="initials">MM</div>
+        </div>
         <h3>Maryam Mozaffari</h3>
         <p>Free University of Bozen-Bolzano, Italy</p>
         <a href="mailto:maryam.mozaffari@unibz.it">maryam.mozaffari@unibz.it</a>
       </article>
-      <article class="person-card">
+      <article class="organizer-card">
+        <div class="person-photo-wrap">
+          <img class="person-photo" src="images/uta-stoerl.jpg" alt="Uta Störl" onerror="this.style.display='none';">
+          <div class="initials">US</div>
+        </div>
         <h3>Uta Störl</h3>
         <p>FernUniversität in Hagen, Germany</p>
         <a href="mailto:uta.stoerl@fernuni-hagen.de">uta.stoerl@fernuni-hagen.de</a>
@@ -454,7 +481,7 @@ footer{background:#0d1a29;color:#dce7ef;padding:27px 0}
 
     <div class="pc-wrap">
       <p class="section-label">Program Committee</p>
-      <h2>Confirmed members</h2>
+      <h2>Program Committee</h2>
       <div class="pc-grid">
         <p><strong>Paolo Atzeni</strong><span>Roma Tre University, Italy</span></p>
         <p><strong>Mohamed-Amine Baazizi</strong><span>Sorbonne Université, France</span></p>

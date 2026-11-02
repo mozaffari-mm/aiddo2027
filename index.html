@@ -1,193 +1,507 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AIDDO 2027 — AI for Database Schema Design and Optimization, an IEEE ICDE 2027 workshop in Copenhagen, Denmark.">
-  <meta name="robots" content="index,follow">
-  <meta property="og:title" content="AIDDO 2027 | AI for Database Schema Design and Optimization">
-  <meta property="og:description" content="A half-day workshop at IEEE ICDE 2027 on AI-assisted database design, optimization, adaptation, and intelligent data systems.">
-  <meta property="og:type" content="website">
-  <title>AIDDO 2027 | AI for Database Schema Design and Optimization</title>
-  <link rel="stylesheet" href="assets/styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="AIDDO 2027 — AI for Database Schema Design and Optimization, an IEEE ICDE 2027 workshop in Copenhagen, Denmark.">
+<meta name="robots" content="index,follow">
+<meta property="og:title" content="AIDDO 2027 | AI for Database Schema Design and Optimization">
+<meta property="og:description" content="A half-day ICDE 2027 workshop on AI-assisted database design, optimization, adaptation, and intelligent data systems.">
+<meta property="og:type" content="website">
+<title>AIDDO 2027 | AI for Database Schema Design and Optimization</title>
+
+<style>
+:root{
+  --ink:#172033;
+  --muted:#5f6d7e;
+  --navy:#14385d;
+  --navy2:#0f2944;
+  --blue:#2c6aa0;
+  --teal:#087a75;
+  --gold:#c79731;
+  --line:#dfe6ed;
+  --soft:#f5f8fb;
+  --paper:#fff;
+  --max:1180px;
+  --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.65;
+}
+a{color:var(--blue)}
+.container{width:min(calc(100% - 42px),var(--max));margin-inline:auto}
+.prose{max-width:880px}
+.section{padding:74px 0}
+.section.alt{background:var(--soft);border-block:1px solid var(--line)}
+.section-label{
+  margin:0 0 10px;color:var(--teal);font-size:.76rem;
+  font-weight:850;letter-spacing:.12em;text-transform:uppercase
+}
+h1,h2,h3{color:var(--ink)}
+h1{font-size:clamp(2.6rem,5vw,4.75rem);line-height:.98;letter-spacing:-.045em;margin:0;max-width:920px}
+h2{font-size:clamp(1.95rem,3vw,3rem);line-height:1.08;letter-spacing:-.03em;margin:0 0 20px}
+h3{margin:0 0 8px;line-height:1.25}
+p{color:var(--muted)}
+
+.site-header{
+  position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(14px)
+}
+.nav-wrap{min-height:70px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{text-decoration:none;color:var(--ink);font-weight:900;letter-spacing:.04em}
+.brand span{color:var(--teal);font-size:.8rem;margin-left:6px}
+.main-nav{display:flex;gap:19px;flex-wrap:wrap}
+.main-nav a{text-decoration:none;color:var(--ink);font-size:.91rem;font-weight:670}
+.main-nav a:hover{color:var(--blue)}
+.nav-toggle{display:none;background:#fff;border:1px solid var(--line);padding:8px 12px;border-radius:10px}
+
+.accepted-bar{
+  background:var(--navy2);color:#eef5fb;font-size:.9rem
+}
+.accepted-inner{
+  min-height:42px;display:flex;align-items:center;justify-content:center;gap:10px;text-align:center
+}
+.accepted-dot{width:8px;height:8px;background:#57c0b8;border-radius:50%;display:inline-block}
+
+.hero{
+  padding:72px 0 58px;
+  background:
+    radial-gradient(circle at 86% 18%,rgba(44,106,160,.14),transparent 30%),
+    linear-gradient(180deg,#f8fbfd 0%,#fff 100%);
+  border-bottom:1px solid var(--line)
+}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(300px,.72fr);gap:55px;align-items:center}
+.eyebrow{
+  color:var(--teal);font-size:.78rem;font-weight:850;letter-spacing:.12em;
+  text-transform:uppercase;margin:0 0 15px
+}
+.acronym{font-size:1.24rem;font-weight:850;color:var(--blue);margin:15px 0 0}
+.lead{font-size:clamp(1.06rem,1.8vw,1.28rem);max-width:760px;margin:20px 0}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px 22px;font-size:.93rem;color:var(--muted)}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.button{
+  display:inline-block;text-decoration:none;font-weight:760;padding:11px 17px;
+  border-radius:12px;border:1px solid transparent
+}
+.button.primary{background:var(--navy);color:#fff}
+.button.secondary{background:#fff;color:var(--navy);border-color:var(--line)}
+.hero-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:25px;box-shadow:0 18px 50px rgba(23,32,51,.08)
+}
+.hero-card .row{padding:14px 0;border-top:1px solid var(--line)}
+.hero-card .row:first-of-type{border-top:0}
+.hero-card span{display:block;color:var(--muted);font-size:.83rem}
+.hero-card strong{font-size:1.08rem}
+
+.news{
+  padding:24px 0;border-bottom:1px solid var(--line);background:#fff
+}
+.news-grid{display:grid;grid-template-columns:120px 1fr 1fr;gap:22px;align-items:center}
+.news-title{font-weight:850;color:var(--navy);letter-spacing:.04em}
+.news-item{display:flex;gap:12px;align-items:flex-start}
+.news-date{font-size:.78rem;font-weight:800;color:var(--teal);white-space:nowrap;padding-top:2px}
+.news-item p{margin:0;color:var(--ink);font-size:.93rem}
+
+.about-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:50px;align-items:start}
+.quick-facts{
+  border-left:4px solid var(--teal);padding-left:22px
+}
+.quick-facts dl{margin:0}
+.quick-facts dt{font-weight:800;color:var(--ink);font-size:.9rem;margin-top:16px}
+.quick-facts dt:first-child{margin-top:0}
+.quick-facts dd{margin:3px 0 0;color:var(--muted)}
+
+.cfp-intro{display:grid;grid-template-columns:1fr .86fr;gap:44px;align-items:start;margin-bottom:30px}
+.audience-box{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:23px
+}
+.audience-box h3{font-size:1.05rem}
+.audience-box p{margin-bottom:0;font-size:.93rem}
+.topic-group{margin-top:30px}
+.topic-group h3{font-size:1.1rem;color:var(--navy);margin-bottom:10px}
+.topic-list{
+  display:grid;grid-template-columns:repeat(2,1fr);column-gap:36px;row-gap:8px;
+  margin:0;padding-left:20px;color:var(--muted)
+}
+.topic-list li{padding-left:3px}
+
+.format-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.format-card{
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:21px
+}
+.format-card strong{display:block;font-size:1.04rem}
+.format-card span{color:var(--muted);font-size:.9rem}
+
+.review-box{
+  margin-top:22px;background:var(--navy);color:#fff;border-radius:var(--radius);
+  padding:27px;display:grid;grid-template-columns:.8fr 1.2fr;gap:25px
+}
+.review-box h3{color:#fff;font-size:1.35rem}
+.review-box p,.review-box li{color:#dce8f2}
+.review-box ul{margin:0}
+
+.date-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:24px}
+.date-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px}
+.date-card span{display:block;color:var(--muted);font-size:.84rem}
+.date-card strong{display:block;margin-top:8px}
+.date-card small{display:block;color:var(--muted);margin-top:3px}
+.note{font-size:.9rem;margin-top:17px}
+
+.speaker-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.speaker-card{
+  background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:25px;display:flex;gap:17px;align-items:flex-start
+}
+.initials{
+  width:54px;height:54px;flex:0 0 54px;border-radius:50%;
+  display:grid;place-items:center;background:var(--navy);color:#fff;font-weight:850
+}
+.affiliation{margin:2px 0 12px;font-size:.91rem}
+.talk{color:var(--ink)!important;font-weight:650;margin:0}
+
+.people-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+.person-card{border:1px solid var(--line);border-radius:14px;padding:21px;background:#fff}
+.person-card p{margin:3px 0;font-size:.9rem}
+.person-card a{font-size:.88rem}
+.pc-wrap{margin-top:48px}
+.pc-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px 28px}
+.pc-grid p{margin:0;padding:11px 0;border-bottom:1px solid var(--line);display:flex;flex-direction:column}
+.pc-grid span{font-size:.88rem;color:var(--muted)}
+
+.discussion{
+  background:linear-gradient(135deg,var(--navy2),var(--navy));color:#fff;border-radius:var(--radius);
+  padding:34px;margin-top:24px
+}
+.discussion .section-label{color:#91d7d1}
+.discussion h2{color:#fff;max-width:800px}
+.discussion p{color:#d8e5ef;max-width:820px}
+
+.contact{text-align:center}
+.contact p{max-width:700px;margin-inline:auto}
+footer{background:#0d1a29;color:#dce7ef;padding:27px 0}
+.footer-grid{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.footer-grid p{margin:0;color:#dce7ef;font-size:.9rem}
+
+@media(max-width:950px){
+  .hero-grid,.about-grid,.cfp-intro{grid-template-columns:1fr}
+  .hero-card{max-width:540px}
+  .date-grid{grid-template-columns:repeat(2,1fr)}
+  .people-grid{grid-template-columns:1fr}
+  .format-grid{grid-template-columns:1fr}
+  .review-box{grid-template-columns:1fr}
+  .news-grid{grid-template-columns:100px 1fr}
+  .news-item:last-child{grid-column:2}
+}
+@media(max-width:720px){
+  .nav-toggle{display:inline-block}
+  .main-nav{
+    display:none;position:absolute;top:70px;left:20px;right:20px;flex-direction:column;
+    background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px;
+    box-shadow:0 18px 50px rgba(23,32,51,.1)
+  }
+  .main-nav.open{display:flex}
+  .hero{padding-top:56px}
+  .section{padding:60px 0}
+  .news-grid{grid-template-columns:1fr}
+  .news-item:last-child{grid-column:auto}
+  .topic-list,.date-grid,.speaker-grid,.pc-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
+
 <body>
-  <header class="site-header">
-    <div class="container nav-wrap">
-      <a class="brand" href="#top" aria-label="AIDDO 2027 home">
-        <span class="brand-main">AIDDO</span><span class="brand-year">2027</span>
-      </a>
-      <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
-      <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#cfp">Call for Papers</a>
-        <a href="#dates">Dates</a>
-        <a href="#speakers">Invited Talks</a>
-        <a href="#organization">Organization</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </div>
-  </header>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="#top">AIDDO <span>2027</span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="main-nav">Menu</button>
+    <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#cfp">Call for Papers</a>
+      <a href="#format">Format</a>
+      <a href="#dates">Dates</a>
+      <a href="#speakers">Invited Talks</a>
+      <a href="#organization">Organization</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="container hero-grid">
+<div class="accepted-bar">
+  <div class="container accepted-inner">
+    <span class="accepted-dot"></span>
+    <span>Workshop proposal accepted for IEEE ICDE 2027</span>
+  </div>
+</div>
+
+<main id="top">
+<section class="hero">
+  <div class="container hero-grid">
+    <div>
+      <p class="eyebrow">Workshop at the 43rd IEEE International Conference on Data Engineering</p>
+      <h1>AI for Database Schema Design and Optimization</h1>
+      <p class="acronym">AIDDO 2027</p>
+      <p class="lead">A half-day workshop on AI-assisted database design, optimization, adaptation, and intelligent data systems.</p>
+      <div class="hero-meta">
+        <span>ICDE 2027 · Copenhagen, Denmark</span>
+        <span>Conference: May 17–21, 2027</span>
+        <span>Workshop date: to be announced</span>
+      </div>
+      <div class="actions">
+        <a class="button primary" href="#cfp">Call for Papers</a>
+        <a class="button secondary" href="#dates">Important Dates</a>
+      </div>
+    </div>
+
+    <aside class="hero-card">
+      <p class="section-label">At a glance</p>
+      <div class="row"><span>Format</span><strong>Half-day workshop</strong></div>
+      <div class="row"><span>Invited program</span><strong>2 confirmed talks</strong></div>
+      <div class="row"><span>Proceedings</span><strong>ICDE workshop proceedings</strong></div>
+      <div class="row"><span>Location</span><strong>Copenhagen, Denmark</strong></div>
+    </aside>
+  </div>
+</section>
+
+<section class="news" id="news">
+  <div class="container news-grid">
+    <div class="news-title">News</div>
+    <div class="news-item">
+      <span class="news-date">Nov 1, 2026</span>
+      <p>AIDDO 2027 workshop proposal accepted for ICDE 2027.</p>
+    </div>
+    <div class="news-item">
+      <span class="news-date">Nov 2, 2026</span>
+      <p>Workshop website launched; call for papers preparation underway.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container about-grid">
+    <div class="prose">
+      <p class="section-label">About AIDDO</p>
+      <h2>Intelligent database design across the data-system lifecycle</h2>
+      <p>Database design and optimization increasingly require decisions across conceptual, logical, and physical levels while workloads, data characteristics, and system requirements continue to evolve. AI and machine learning create new opportunities for cost and performance estimation, design-space exploration, prediction, adaptation, and automated decision-making.</p>
+      <p>AIDDO brings together researchers and practitioners working on intelligent database design and optimization across relational, NoSQL, multi-model, temporal, graph, vector, and heterogeneous data systems. The workshop also welcomes broader AI-for-data-management contributions that connect to database design, optimization, adaptation, schema evolution, or the evolution of data-intensive systems.</p>
+    </div>
+
+    <aside class="quick-facts">
+      <p class="section-label">Workshop profile</p>
+      <dl>
+        <dt>Edition</dt><dd>First edition</dd>
+        <dt>Audience</dt><dd>Researchers and practitioners in databases, data management, and AI for data systems</dd>
+        <dt>Program</dt><dd>Peer-reviewed papers, invited talks, and interactive discussion</dd>
+        <dt>Conference</dt><dd>IEEE ICDE 2027</dd>
+      </dl>
+    </aside>
+  </div>
+</section>
+
+<section class="section alt" id="cfp">
+  <div class="container">
+    <p class="section-label">Call for Papers</p>
+    <h2>Research at the intersection of AI and database design</h2>
+
+    <div class="cfp-intro">
+      <div>
+        <p>We invite original research, vision, experience, benchmark, and tool contributions on AI-assisted database design and optimization. In addition to schema-centered work, we welcome closely related AI-for-data-management research that advances automated design, tuning, adaptation, or evolution of data-intensive systems.</p>
+      </div>
+      <aside class="audience-box">
+        <h3>Who should submit?</h3>
+        <p>Researchers and practitioners working in database systems, data management, machine learning for systems, autonomous databases, NoSQL and multi-model systems, temporal data, and AI-assisted data engineering.</p>
+      </aside>
+    </div>
+
+    <div class="topic-group">
+      <h3>AI for database and schema design</h3>
+      <ul class="topic-list">
+        <li>AI-assisted conceptual, logical, and physical database design</li>
+        <li>Schema generation and recommendation</li>
+        <li>Schema evolution, matching, integration, migration, and transformation</li>
+        <li>AI-assisted temporal schema design and optimization</li>
+        <li>Store-independent and multi-model database design</li>
+        <li>Human-in-the-loop and explainable database design</li>
+      </ul>
+    </div>
+
+    <div class="topic-group">
+      <h3>Learning for optimization and adaptation</h3>
+      <ul class="topic-list">
+        <li>Learned cost, cardinality, and performance models</li>
+        <li>Learning-based search over large design spaces</li>
+        <li>Workload-aware and query-driven optimization</li>
+        <li>Self-tuning, autonomous, online, and proactive database systems</li>
+        <li>AI-assisted indexing, partitioning, clustering, materialized views, and storage layouts</li>
+        <li>Reinforcement learning for database design and tuning</li>
+      </ul>
+    </div>
+
+    <div class="topic-group">
+      <h3>Broader AI for data systems</h3>
+      <ul class="topic-list">
+        <li>LLMs and generative AI for data modeling and schema reasoning</li>
+        <li>AI-assisted data engineering and query-aware design</li>
+        <li>NoSQL, temporal, graph, vector, multi-model, and heterogeneous data systems</li>
+        <li>Trustworthy, explainable, and controllable adaptive systems</li>
+        <li>Benchmarks, reproducibility, empirical studies, and industrial experiences</li>
+        <li>Tools, prototypes, and demonstrations related to the topics above</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="format">
+  <div class="container">
+    <p class="section-label">Workshop Format</p>
+    <h2>Submissions and review</h2>
+    <p class="prose">AIDDO 2027 is planned as a half-day workshop combining peer-reviewed research presentations, two invited talks, and an interactive discussion.</p>
+
+    <div class="format-grid">
+      <div class="format-card"><strong>Full research papers</strong><span>Up to 8 pages plus references</span></div>
+      <div class="format-card"><strong>Short papers</strong><span>Up to 4 pages plus references</span></div>
+      <div class="format-card"><strong>Extended abstracts</strong><span>Up to 2 pages plus references</span></div>
+    </div>
+
+    <div class="review-box">
+      <div>
+        <p class="section-label">Review process</p>
+        <h3>Peer-reviewed workshop contributions</h3>
+      </div>
+      <ul>
+        <li>Each submission will receive at least three reviews.</li>
+        <li>Evaluation will consider relevance, originality, technical quality, clarity, and discussion potential.</li>
+        <li>Conflicts of interest will be handled according to IEEE/ICDE principles.</li>
+        <li>Accepted papers will follow ICDE workshop publication requirements and appear in the joint ICDE workshop proceedings.</li>
+      </ul>
+    </div>
+
+    <p class="note">Final submission-system and formatting instructions will be posted once confirmed with the ICDE workshop and proceedings chairs.</p>
+  </div>
+</section>
+
+<section class="section alt" id="dates">
+  <div class="container">
+    <p class="section-label">Important Dates</p>
+    <h2>Tentative timeline</h2>
+    <div class="date-grid">
+      <div class="date-card"><span>Paper submission</span><strong>February 3, 2027</strong></div>
+      <div class="date-card"><span>Author notification</span><strong>February 24, 2027</strong></div>
+      <div class="date-card"><span>Camera-ready</span><strong>March 10, 2027</strong></div>
+      <div class="date-card"><span>Workshop</span><strong>To be announced</strong><small>ICDE workshop days: May 17 or May 21, 2027</small></div>
+    </div>
+    <p class="note">The deadlines will be coordinated with the ICDE Workshop and Proceedings Chairs and adjusted if required.</p>
+  </div>
+</section>
+
+<section class="section" id="speakers">
+  <div class="container">
+    <p class="section-label">Invited Talks</p>
+    <h2>Confirmed invited speakers</h2>
+    <div class="speaker-grid">
+      <article class="speaker-card">
+        <div class="initials">SS</div>
         <div>
-          <p class="eyebrow">Workshop at the 43rd IEEE International Conference on Data Engineering</p>
-          <h1>AI for Database Schema Design and Optimization</h1>
-          <p class="acronym">AIDDO 2027</p>
-          <p class="lead">A half-day workshop on AI-assisted database design, optimization, adaptation, and intelligent data systems.</p>
-          <div class="hero-meta">
-            <span>ICDE 2027 · Copenhagen, Denmark</span>
-            <span>Conference: May 17–21, 2027</span>
-            <span>Workshop date: to be announced</span>
-          </div>
-          <div class="actions">
-            <a class="button primary" href="#cfp">Call for Papers</a>
-            <a class="button secondary" href="#dates">Important Dates</a>
-          </div>
+          <h3>Shelly Sachdeva</h3>
+          <p class="affiliation">National Institute of Technology Delhi, India</p>
+          <p class="talk">“Schema generation for document stores using workload-driven approach”</p>
         </div>
-        <aside class="summary-card" aria-label="Workshop summary">
-          <span class="summary-label">Workshop format</span>
-          <strong>Half-day</strong>
-          <hr>
-          <span class="summary-label">Invited talks</span>
-          <strong>2 confirmed</strong>
-          <hr>
-          <span class="summary-label">Location</span>
-          <strong>Copenhagen, Denmark</strong>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container prose">
-        <p class="section-label">About AIDDO</p>
-        <h2>Intelligent database design across the data-system lifecycle</h2>
-        <p>Database design and optimization increasingly require decisions across conceptual, logical, and physical levels while workloads, data characteristics, and system requirements continue to evolve. AI and machine learning create new opportunities for cost and performance estimation, design-space exploration, prediction, adaptation, and automated decision-making.</p>
-        <p>AIDDO brings together researchers and practitioners working on intelligent database design and optimization across relational, NoSQL, multi-model, temporal, graph, vector, and heterogeneous data systems. The workshop also welcomes broader AI-for-data-management contributions that connect to database design, optimization, adaptation, schema evolution, or the evolution of data-intensive systems.</p>
-      </div>
-    </section>
-
-    <section class="section alt" id="cfp">
-      <div class="container">
-        <p class="section-label">Call for Papers</p>
-        <h2>Topics of interest</h2>
-        <p class="intro">We invite original research, vision, experience, benchmark, and tool contributions. Topics include, but are not limited to:</p>
-
-        <div class="topic-grid">
-          <article><h3>AI-assisted database design</h3><p>Conceptual, logical, and physical design; schema generation; recommendation; query-aware design.</p></article>
-          <article><h3>Schema evolution & migration</h3><p>Schema evolution, matching, integration, migration, transformation, and data-model evolution.</p></article>
-          <article><h3>Learned optimization</h3><p>Learned cost, cardinality, and performance models; AI-guided search; reinforcement learning.</p></article>
-          <article><h3>Autonomous & adaptive systems</h3><p>Self-tuning databases, online adaptation, proactive tuning, workload-aware optimization, and reconfiguration.</p></article>
-          <article><h3>Physical database design</h3><p>AI-assisted indexing, partitioning, clustering, materialized views, layouts, data placement, and storage design.</p></article>
-          <article><h3>LLMs & generative AI</h3><p>LLMs for data modeling, schema reasoning, design assistance, Text-to-SQL robustness, and database engineering.</p></article>
-          <article><h3>Beyond a single data model</h3><p>NoSQL, multi-model, temporal, graph, vector, and heterogeneous systems; store-independent design.</p></article>
-          <article><h3>Human-centered AI</h3><p>Human-in-the-loop design, explainability, controllability, trustworthy adaptation, and avoiding overreaction.</p></article>
-          <article><h3>Evaluation & practice</h3><p>Benchmarks, empirical studies, industrial experience, reproducibility, tools, demonstrations, and case studies.</p></article>
+      </article>
+      <article class="speaker-card">
+        <div class="initials">FB</div>
+        <div>
+          <h3>Francesca Bugiotti</h3>
+          <p class="affiliation">CentraleSupélec, France</p>
+          <p class="talk">“New-for-Old Modeling Methodologies for a uniform data access”</p>
         </div>
-
-        <div class="submission">
-          <div>
-            <p class="section-label light">Planned submissions</p>
-            <h3>Paper categories</h3>
-          </div>
-          <ul>
-            <li><strong>Full research papers:</strong> up to 8 pages plus references</li>
-            <li><strong>Short papers:</strong> up to 4 pages plus references</li>
-            <li><strong>Extended abstracts:</strong> up to 2 pages plus references</li>
-          </ul>
-          <p class="submission-note">Final formatting, submission-system, and publication instructions will follow the ICDE 2027 workshop proceedings requirements.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="dates">
-      <div class="container">
-        <p class="section-label">Important Dates</p>
-        <h2>Workshop timeline</h2>
-        <div class="date-grid">
-          <article><span>Paper submission</span><strong>February 3, 2027</strong></article>
-          <article><span>Author notification</span><strong>February 24, 2027</strong></article>
-          <article><span>Camera-ready</span><strong>March 10, 2027</strong></article>
-          <article><span>Workshop</span><strong>To be announced</strong><small>ICDE workshop days are May 17 or May 21, 2027</small></article>
-        </div>
-        <p class="note">Deadlines will be coordinated with the ICDE Workshop and Proceedings Chairs and adjusted if required.</p>
-      </div>
-    </section>
-
-    <section class="section alt" id="speakers">
-      <div class="container">
-        <p class="section-label">Invited Talks</p>
-        <h2>Confirmed invited speakers</h2>
-        <div class="speaker-grid">
-          <article class="speaker-card">
-            <div class="initials">SS</div>
-            <div><h3>Shelly Sachdeva</h3><p class="affiliation">National Institute of Technology Delhi, India</p><p class="talk">Schema generation for document stores using workload-driven approach</p></div>
-          </article>
-          <article class="speaker-card">
-            <div class="initials">FB</div>
-            <div><h3>Francesca Bugiotti</h3><p class="affiliation">CentraleSupélec, France</p><p class="talk">New-for-Old Modeling Methodologies for a uniform data access</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="organization">
-      <div class="container">
-        <p class="section-label">Organization</p>
-        <h2>Workshop organizers</h2>
-        <div class="people-grid">
-          <article><h3>Johann Gamper</h3><p>Free University of Bozen-Bolzano, Italy</p></article>
-          <article><h3>Maryam Mozaffari</h3><p>Free University of Bozen-Bolzano, Italy</p></article>
-          <article><h3>Uta Störl</h3><p>FernUniversität in Hagen, Germany</p></article>
-        </div>
-
-        <div class="pc">
-          <p class="section-label">Program Committee</p>
-          <h2>Confirmed members</h2>
-          <div class="pc-grid">
-            <p><strong>Paolo Atzeni</strong><span>Roma Tre University, Italy</span></p>
-            <p><strong>Mohamed-Amine Baazizi</strong><span>Sorbonne Université, France</span></p>
-            <p><strong>Gao Cong</strong><span>Nanyang Technological University, Singapore</span></p>
-            <p><strong>Anton Dignös</strong><span>Free University of Bozen-Bolzano, Italy</span></p>
-            <p><strong>Irena Holubová</strong><span>Charles University, Czech Republic</span></p>
-            <p><strong>Meike Klettke</strong><span>University of Regensburg, Germany</span></p>
-            <p><strong>Jiaheng Lu</strong><span>University of Helsinki, Finland</span></p>
-            <p><strong>Eslam Nazemi</strong><span>Shahid Beheshti University, Iran</span></p>
-            <p><strong>Stefanie Scherzinger</strong><span>University of Passau, Germany</span></p>
-            <p><strong>Heiko Schuldt</strong><span>University of Basel, Switzerland</span></p>
-            <p><strong>Jiannan Wang</strong><span>Tsinghua University, China</span></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt">
-      <div class="container prose">
-        <p class="section-label">Interactive Discussion</p>
-        <h2>Can AI fully automate database schema design and tuning?</h2>
-        <p>The half-day program will combine peer-reviewed research presentations, two invited talks, and an interactive discussion on the opportunities and challenges of AI-assisted and autonomous database design.</p>
-      </div>
-    </section>
-
-    <section class="section contact" id="contact">
-      <div class="container prose center">
-        <p class="section-label">Contact</p>
-        <h2>AIDDO 2027</h2>
-        <p>For workshop questions, please contact the organizers. A dedicated workshop email can be added here once created.</p>
-        <p><a href="https://icde2027.github.io/" target="_blank" rel="noopener">Visit the official ICDE 2027 website</a></p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container footer-grid">
-      <p><strong>AIDDO 2027</strong> · AI for Database Schema Design and Optimization</p>
-      <p>IEEE ICDE 2027 · Copenhagen, Denmark</p>
+      </article>
     </div>
-  </footer>
 
-  <script src="assets/script.js"></script>
+    <div class="discussion">
+      <p class="section-label">Interactive Discussion</p>
+      <h2>Can AI Fully Automate Database Schema Design and Tuning?</h2>
+      <p>The workshop will include an interactive discussion on opportunities and challenges in AI-assisted and autonomous database design.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="organization">
+  <div class="container">
+    <p class="section-label">Organization</p>
+    <h2>Workshop organizers</h2>
+    <div class="people-grid">
+      <article class="person-card">
+        <h3>Johann Gamper</h3>
+        <p>Free University of Bozen-Bolzano, Italy</p>
+        <a href="mailto:johann.gamper@unibz.it">johann.gamper@unibz.it</a>
+      </article>
+      <article class="person-card">
+        <h3>Maryam Mozaffari</h3>
+        <p>Free University of Bozen-Bolzano, Italy</p>
+        <a href="mailto:maryam.mozaffari@unibz.it">maryam.mozaffari@unibz.it</a>
+      </article>
+      <article class="person-card">
+        <h3>Uta Störl</h3>
+        <p>FernUniversität in Hagen, Germany</p>
+        <a href="mailto:uta.stoerl@fernuni-hagen.de">uta.stoerl@fernuni-hagen.de</a>
+      </article>
+    </div>
+
+    <div class="pc-wrap">
+      <p class="section-label">Program Committee</p>
+      <h2>Confirmed members</h2>
+      <div class="pc-grid">
+        <p><strong>Paolo Atzeni</strong><span>Roma Tre University, Italy</span></p>
+        <p><strong>Mohamed-Amine Baazizi</strong><span>Sorbonne Université, France</span></p>
+        <p><strong>Gao Cong</strong><span>Nanyang Technological University, Singapore</span></p>
+        <p><strong>Anton Dignös</strong><span>Free University of Bozen-Bolzano, Italy</span></p>
+        <p><strong>Irena Holubová</strong><span>Charles University, Czech Republic</span></p>
+        <p><strong>Meike Klettke</strong><span>University of Regensburg, Germany</span></p>
+        <p><strong>Jiaheng Lu</strong><span>University of Helsinki, Finland</span></p>
+        <p><strong>Eslam Nazemi</strong><span>Shahid Beheshti University, Iran</span></p>
+        <p><strong>Stefanie Scherzinger</strong><span>University of Passau, Germany</span></p>
+        <p><strong>Heiko Schuldt</strong><span>University of Basel, Switzerland</span></p>
+        <p><strong>Jiannan Wang</strong><span>Tsinghua University, China</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section contact" id="contact">
+  <div class="container">
+    <p class="section-label">Contact</p>
+    <h2>AIDDO 2027</h2>
+    <p>For questions about the workshop, please contact the organizers. Additional submission information will be posted as soon as it is confirmed.</p>
+    <p><a href="https://icde2027.github.io/" target="_blank" rel="noopener">Official IEEE ICDE 2027 website</a></p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container footer-grid">
+    <p><strong>AIDDO 2027</strong> · AI for Database Schema Design and Optimization</p>
+    <p>IEEE ICDE 2027 · Copenhagen, Denmark</p>
+  </div>
+</footer>
+
+<script>
+const toggle=document.querySelector('.nav-toggle');
+const nav=document.querySelector('.main-nav');
+if(toggle&&nav){
+  toggle.addEventListener('click',()=>{
+    const open=nav.classList.toggle('open');
+    toggle.setAttribute('aria-expanded',String(open));
+  });
+  nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    nav.classList.remove('open');
+    toggle.setAttribute('aria-expanded','false');
+  }));
+}
+</script>
 </body>
 </html>

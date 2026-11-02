@@ -132,12 +132,52 @@
       margin:0 0 16px
     }
     .hero h1{color:#fff}
-    .hero-subtitle{
-      margin:18px 0 0;
-      font-size:1.3rem;
-      font-weight:760;
-      color:#fff
-    }
+   .workshop-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 10px;
+
+  margin: 18px 0 6px;
+  padding: 9px 18px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(0, 210, 190, 0.90),
+    rgba(35, 110, 240, 0.90),
+    rgba(125, 40, 245, 0.90)
+  );
+
+  border-radius: 6px;
+
+  color: white;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.8rem;
+  line-height: 1.2;
+  font-style: italic;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.workshop-badge strong {
+  color: white;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.workshop-badge span {
+  color: white;
+}
+
+.workshop-badge a {
+  color: white;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.workshop-badge a:hover {
+  color: #e8f7ff;
+}
     .hero-subtitle a{color:#bfe9ff;text-underline-offset:3px}
     .hero-lead{
       font-size:1.08rem;
@@ -515,16 +555,19 @@
 
 <section class="hero">
   <div class="hero-inner">
-    <p class="hero-subtitle">
-      AIDDO&nbsp; <em>Workshop at
-      <a href="https://icde2027.github.io/" target="_blank" rel="noopener">ICDE'27</a></em>
-    </p>
+    <div class="workshop-badge">
+      <strong>AIDDO</strong>
+      <span>Workshop at</span>
+      <a href="https://icde2027.github.io/" target="_blank" rel="noopener">
+         ICDE'27
+      </a>
+    </div>
     <h1>AI for Database Schema Design and Optimization</h1>
 
     
 
     <p class="hero-lead">
-      A half-day workshop on AI-assisted database design, optimization,
+      A half-day workshop on AI-assisted database schema design, optimization,
       adaptation, and intelligent data systems.
     </p>
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="AIDDO — AI for Database Schema Design and Optimization, a workshop at IEEE ICDE 2027 in Copenhagen, Denmark.">
-  <meta name="robots" content="index,follow">
+  <meta name="robots" content="noindex,nofollow,noarchive">
   <meta property="og:title" content="AIDDO | Workshop at ICDE'27">
   <meta property="og:description" content="AI for Database Schema Design and Optimization — workshop at IEEE ICDE 2027.">
   <meta property="og:type" content="website">
@@ -391,10 +391,102 @@
       .speaker-card{grid-template-columns:84px 1fr}
       .speaker-card .person-photo{width:84px;height:84px}
     }
-  </style>
+  
+    /* Temporary review gate */
+    body.review-locked > .site-header,
+    body.review-locked > main,
+    body.review-locked > footer {
+      display:none !important;
+    }
+    #review-gate {
+      min-height:100vh;
+      display:none;
+      place-items:center;
+      padding:28px;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(45,110,165,.25), transparent 34%),
+        linear-gradient(135deg,#071a2d,#102f50);
+    }
+    body.review-locked #review-gate { display:grid; }
+    .review-card {
+      width:min(100%,520px);
+      background:#fff;
+      border-radius:18px;
+      padding:32px;
+      box-shadow:0 24px 70px rgba(0,0,0,.30);
+    }
+    .review-card h1 {
+      font-size:1.9rem;
+      line-height:1.15;
+      margin:0 0 10px;
+      color:var(--ink);
+    }
+    .review-card p { margin:0 0 22px; }
+    .review-card label {
+      display:block;
+      font-weight:750;
+      margin-bottom:7px;
+      color:var(--ink);
+    }
+    .review-card input {
+      width:100%;
+      font:inherit;
+      padding:12px 13px;
+      border:1px solid var(--line);
+      border-radius:10px;
+      outline:none;
+    }
+    .review-card input:focus {
+      border-color:var(--blue);
+      box-shadow:0 0 0 3px rgba(45,110,165,.12);
+    }
+    .review-card button {
+      margin-top:12px;
+      width:100%;
+      border:0;
+      border-radius:10px;
+      padding:12px 14px;
+      font:inherit;
+      font-weight:800;
+      cursor:pointer;
+      background:var(--navy);
+      color:#fff;
+    }
+    .review-error {
+      min-height:1.4em;
+      margin-top:10px !important;
+      margin-bottom:0 !important;
+      color:#a32020 !important;
+      font-size:.9rem;
+    }
+    .review-note {
+      margin-top:18px !important;
+      margin-bottom:0 !important;
+      font-size:.78rem;
+      color:#788493 !important;
+    }
+
+</style>
 </head>
 
-<body>
+<body class="review-locked">
+
+<div id="review-gate" role="dialog" aria-modal="true" aria-labelledby="review-title">
+  <div class="review-card">
+    <h1 id="review-title">AIDDO Website Review</h1>
+    <p>This website is temporarily restricted while the workshop organizers review the draft.</p>
+
+    <form id="review-form">
+      <label for="review-password">Password</label>
+      <input id="review-password" type="password" autocomplete="current-password" autofocus>
+      <button type="submit">View website</button>
+      <p id="review-error" class="review-error" aria-live="polite"></p>
+    </form>
+
+    <p class="review-note">Temporary review access for the AIDDO workshop website.</p>
+  </div>
+</div>
+
 <header class="site-header">
   <div class="container nav-wrap">
     <a class="brand" href="#top">AIDDO</a>
@@ -752,5 +844,49 @@ if(toggle && nav){
   });
 }
 </script>
+
+<script>
+(async function() {
+  const STORAGE_KEY = "aiddo-review-unlocked";
+  const EXPECTED_HASH = "b2e035cd44d6f0dd0358bb163d7ae338831cd09b8c0dc5977b5b4bfea903b2e6";
+
+  function unlock() {
+    document.body.classList.remove("review-locked");
+    sessionStorage.setItem(STORAGE_KEY, "1");
+  }
+
+  if (sessionStorage.getItem(STORAGE_KEY) === "1") {
+    unlock();
+    return;
+  }
+
+  const form = document.getElementById("review-form");
+  const input = document.getElementById("review-password");
+  const error = document.getElementById("review-error");
+
+  async function sha256(text) {
+    const data = new TextEncoder().encode(text);
+    const digest = await crypto.subtle.digest("SHA-256", data);
+    return Array.from(new Uint8Array(digest))
+      .map(b => b.toString(16).padStart(2, "0"))
+      .join("");
+  }
+
+  form.addEventListener("submit", async function(event) {
+    event.preventDefault();
+    const enteredHash = await sha256(input.value);
+
+    if (enteredHash === EXPECTED_HASH) {
+      error.textContent = "";
+      input.value = "";
+      unlock();
+    } else {
+      error.textContent = "Incorrect password.";
+      input.select();
+    }
+  });
+})();
+</script>
+
 </body>
 </html>

@@ -1,0 +1,40 @@
+AIDDO 2027 — CALL FOR PAPERS
+
+AI for Database Schema Design and Optimization
+Workshop at the 43rd IEEE International Conference on Data Engineering (ICDE 2027)
+Copenhagen, Denmark
+
+AIDDO brings together researchers and practitioners interested in how AI and machine learning can support database design, optimization, adaptation, and the evolution of data-intensive systems.
+
+TOPICS OF INTEREST
+
+Topics include, but are not limited to:
+
+- AI-assisted conceptual, logical, and physical database design
+- Schema generation and schema recommendation
+- AI for schema evolution, matching, integration, migration, and transformation
+- Learned cost, cardinality, and performance models
+- AI-guided design-space exploration and reinforcement learning
+- Workload-aware and query-driven database optimization
+- Self-tuning, autonomous, online, and proactive database systems
+- AI-assisted indexing, partitioning, clustering, materialized views, storage layouts, and data placement
+- LLMs and generative AI for database modeling, schema reasoning, design assistance, and query-aware design
+- NoSQL, multi-model, temporal, graph, vector, and heterogeneous data systems
+- Store-independent and cross-model database design
+- Human-in-the-loop and explainable AI-assisted database design
+- Benchmarks, empirical studies, industrial experiences, tools, demonstrations, and reproducibility
+
+PLANNED SUBMISSION CATEGORIES
+
+- Full research papers: up to 8 pages plus references
+- Short papers: up to 4 pages plus references
+- Extended abstracts: up to 2 pages plus references
+
+IMPORTANT DATES
+
+- Paper submission: February 3, 2027
+- Author notification: February 24, 2027
+- Camera-ready: March 10, 2027
+- Workshop date: to be announced
+
+Final formatting, submission-system, and publication instructions will follow the ICDE 2027 workshop proceedings requirements.

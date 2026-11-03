@@ -335,6 +335,45 @@
     .date-card strong{display:block;margin-top:7px}
     .date-card small{display:block;color:var(--muted);margin-top:3px}
 
+    /* Call for Papers */
+
+.cfp-content {
+  max-width: 1250px;
+}
+
+.cfp-audience {
+  max-width: 1150px;
+  margin-bottom: 30px;
+  line-height: 1.75;
+  text-align: justify;
+}
+
+.cfp-audience strong {
+  color: var(--ink);
+}
+
+.cfp-topics-title {
+  margin-top: 26px;
+  margin-bottom: 12px;
+  color: var(--muted);
+}
+
+.cfp-topics-title strong {
+  color: var(--ink);
+  font-size: 1.05rem;
+}
+
+.cfp-topic-list {
+  margin: 0;
+  padding-left: 28px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.cfp-topic-list li {
+  margin-bottom: 5px;
+}
+
     /* Speakers and organizers */
     .speaker-grid{
       display:grid;
@@ -643,66 +682,51 @@
 </section>
 
 <section class="section alt" id="cfp">
-  <div class="container">
+  <div class="container cfp-content">
+
     <h2>Call for Papers</h2>
 
-    <div class="cfp-intro">
-      <div>
-        <p>
-          We invite original research, vision, experience, benchmark, and tool
-          contributions on AI-assisted database design and optimization. In
-          addition to schema-centered work, we welcome closely related
-          AI-for-data-management research that advances automated design,
-          tuning, adaptation, or evolution of data-intensive systems.
-        </p>
-      </div>
+    <p class="cfp-audience">
+      <strong>Audience:</strong>
+      AIDDO welcomes researchers and practitioners working in database systems,
+      data management, AI and machine learning for data systems, automated and
+      self-tuning databases, NoSQL and multi-model systems, temporal data, and
+      related areas. We invite contributions addressing the use of AI for
+      database schema design, optimization, adaptation, and evolution.
+    </p>
 
-      <aside class="audience-box">
-        <h3>Who should submit?</h3>
-        <p>
-          Researchers and practitioners working in database systems, data
-          management, machine learning for systems, autonomous databases,
-          NoSQL and multi-model systems, temporal data, and AI-assisted data
-          engineering.
-        </p>
-      </aside>
-    </div>
+    <p class="cfp-topics-title">
+      <strong>Topics of Interest</strong> include, but are not limited to:
+    </p>
 
-    <div class="topic-group">
-      <h3>AI for database and schema design</h3>
-      <ul class="topic-list">
-        <li>AI-assisted conceptual, logical, and physical database design</li>
-        <li>Schema generation and recommendation</li>
-        <li>Schema evolution, matching, integration, migration, and transformation</li>
-        <li>AI-assisted temporal schema design and optimization</li>
-        <li>Store-independent and multi-model database design</li>
-        <li>Human-in-the-loop and explainable database design</li>
-      </ul>
-    </div>
+    <ul class="cfp-topic-list">
+      <li>AI-assisted and AI-driven database schema design and optimization</li>
 
-    <div class="topic-group">
-      <h3>Learning for optimization and adaptation</h3>
-      <ul class="topic-list">
-        <li>Learned cost, cardinality, and performance models</li>
-        <li>Learning-based search over large design spaces</li>
-        <li>Workload-aware and query-driven optimization</li>
-        <li>Self-tuning, autonomous, online, and proactive database systems</li>
-        <li>AI-assisted indexing, partitioning, clustering, materialized views, and storage layouts</li>
-        <li>Reinforcement learning for database design and tuning</li>
-      </ul>
-    </div>
+      <li>AI for schema evolution and data migration</li>
 
-    <div class="topic-group">
-      <h3>Broader AI for data systems</h3>
-      <ul class="topic-list">
-        <li>LLMs and generative AI for data modeling and schema reasoning</li>
-        <li>AI-assisted data engineering and query-aware design</li>
-        <li>NoSQL, temporal, multi-model, and heterogeneous data systems</li>
-        <li>Trustworthy, explainable, and controllable adaptive systems</li>
-        <li>Benchmarks, reproducibility, empirical studies, and industrial experiences</li>
-        <li>Tools, prototypes, and demonstrations related to the topics above</li>
-      </ul>
-    </div>
+      <li>AI-assisted temporal schema design and optimization</li>
+
+      <li>AI-assisted conceptual data modeling</li>
+
+      <li>Machine learning for logical and physical database design</li>
+
+      <li>Learned cost models for schema evaluation</li>
+
+      <li>Learning-based search strategies for large schema design spaces</li>
+
+      <li>Workload-aware and query-driven schema optimization</li>
+
+      <li>Online approaches for full autonomic schema tuning</li>
+
+      <li>AI for proactive schema design and tuning</li>
+
+      <li>Generic schema design for multi-model databases</li>
+
+      <li>Human-in-the-loop and explainable AI-assisted schema design</li>
+
+      <li>Benchmarks for any of the topics above</li>
+    </ul>
+
   </div>
 </section>
 

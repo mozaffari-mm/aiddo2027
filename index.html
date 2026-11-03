@@ -33,7 +33,8 @@
       background:var(--paper);
       color:var(--ink);
       font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height:1.65;
+      font-size:17px;
+      line-height:1.7;
     }
 
     a{color:var(--blue)}
@@ -87,7 +88,7 @@
     .main-nav a{
       text-decoration:none;
       color:var(--ink);
-      font-size:.9rem;
+      font-size:.98rem;
       font-weight:670
     }
     .main-nav a:hover{color:var(--blue)}
@@ -250,38 +251,61 @@
     .quick-facts dt{
       font-weight:800;
       color:var(--ink);
-      font-size:.88rem;
+      font-size:.95rem;
       margin-top:14px
     }
     .quick-facts dt:first-child{margin-top:0}
     .quick-facts dd{margin:3px 0 0;color:var(--muted)}
 
     /* CFP */
-    .cfp-intro{
-      display:grid;
-      grid-template-columns:minmax(0,1.2fr) minmax(320px,.8fr);
-      gap:42px;
-      align-items:start;
-      margin-bottom:30px
+    .cfp-content {
+      max-width:1320px;
     }
-    .audience-box{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:22px
+
+    .cfp-audience {
+      max-width:1180px;
+      margin-bottom:34px;
+      line-height:1.8;
+      text-align:justify;
+      text-justify:inter-word;
     }
-    .audience-box p{margin-bottom:0;font-size:.92rem}
-    .topic-group{margin-top:28px}
-    .topic-group h3{color:var(--navy);margin-bottom:9px}
-    .topic-list{
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      column-gap:42px;
-      row-gap:7px;
+
+    .cfp-audience strong {
+      color:var(--ink);
+    }
+
+    .cfp-topics-title {
+      margin-top:26px;
+      margin-bottom:22px;
+      color:var(--muted);
+    }
+
+    .cfp-topics-title strong {
+      color:var(--ink);
+      font-size:1.12rem;
+    }
+
+    .cfp-category {
+      margin-top:30px;
+    }
+
+    .cfp-category h3 {
+      color:var(--navy);
+      font-size:1.18rem;
+      margin-bottom:10px;
+    }
+
+    .cfp-topic-list {
       margin:0;
-      padding-left:20px;
-      color:var(--muted)
+      padding-left:28px;
+      color:var(--muted);
+      line-height:1.82;
     }
+
+    .cfp-topic-list li {
+      margin-bottom:6px;
+    }
+
     /* Submission */
     #submission h3 {
       margin-top:28px;
@@ -315,7 +339,7 @@
 
     .submission-note {
       margin-top:18px;
-      font-size:.92rem;
+      font-size:.98rem;
     }
 
     /* Dates */
@@ -331,48 +355,10 @@
       border-radius:14px;
       padding:19px
     }
-    .date-card span{display:block;color:var(--muted);font-size:.82rem}
+    .date-card span{display:block;color:var(--muted);font-size:.9rem}
     .date-card strong{display:block;margin-top:7px}
     .date-card small{display:block;color:var(--muted);margin-top:3px}
 
-    /* Call for Papers */
-
-.cfp-content {
-  max-width: 1250px;
-}
-
-.cfp-audience {
-  max-width: 1150px;
-  margin-bottom: 30px;
-  line-height: 1.75;
-  text-align: justify;
-}
-
-.cfp-audience strong {
-  color: var(--ink);
-}
-
-.cfp-topics-title {
-  margin-top: 26px;
-  margin-bottom: 12px;
-  color: var(--muted);
-}
-
-.cfp-topics-title strong {
-  color: var(--ink);
-  font-size: 1.05rem;
-}
-
-.cfp-topic-list {
-  margin: 0;
-  padding-left: 28px;
-  color: var(--muted);
-  line-height: 1.8;
-}
-
-.cfp-topic-list li {
-  margin-bottom: 5px;
-}
 
     /* Speakers and organizers */
     .speaker-grid{
@@ -400,7 +386,7 @@
       background:#edf2f7;
       display:block
     }
-    .affiliation{margin:2px 0 11px;font-size:.9rem}
+    .affiliation{margin:2px 0 11px;font-size:.96rem}
     .talk{color:var(--ink)!important;font-weight:650;margin:0}
 
     .discussion{
@@ -430,8 +416,8 @@
       height:116px;
       margin:0 auto 15px
     }
-    .organizer-card p{margin:2px 0;font-size:.88rem}
-    .organizer-card a{font-size:.86rem}
+    .organizer-card p{margin:2px 0;font-size:.95rem}
+    .organizer-card a{font-size:.94rem}
 
     .pc-wrap{margin-top:48px}
     .pc-grid{
@@ -446,7 +432,7 @@
       display:flex;
       flex-direction:column
     }
-    .pc-grid span{font-size:.86rem;color:var(--muted)}
+    .pc-grid span{font-size:.94rem;color:var(--muted)}
 
     .contact{text-align:center}
     .contact p{max-width:760px;margin-inline:auto}
@@ -462,7 +448,7 @@
       gap:20px;
       flex-wrap:wrap
     }
-    .footer-grid p{margin:0;color:#dce7ef;font-size:.88rem}
+    .footer-grid p{margin:0;color:#dce7ef;font-size:.94rem}
     .footer-grid a{color:#cde9ff}
 
     @media(max-width:1000px){
@@ -490,7 +476,7 @@
       .hero{min-height:560px}
       .hero-inner{padding-top:48px}
       .section{padding:54px 0}
-      .topic-list,.date-grid,.speaker-grid,.pc-grid{grid-template-columns:1fr}
+      .date-grid,.speaker-grid,.pc-grid{grid-template-columns:1fr}
       .speaker-card{grid-template-columns:84px 1fr}
       .speaker-card .person-photo{width:84px;height:84px}
     }
@@ -691,41 +677,72 @@
       AIDDO welcomes researchers and practitioners working in database systems,
       data management, AI and machine learning for data systems, automated and
       self-tuning databases, NoSQL and multi-model systems, temporal data, and
-      related areas. We invite contributions addressing the use of AI for
-      database schema design, optimization, adaptation, and evolution.
+      related areas. The workshop aims to bring together researchers working on
+      database design, optimization, adaptation, and evolution, as well as
+      practitioners addressing these challenges in real-world systems.
     </p>
 
     <p class="cfp-topics-title">
       <strong>Topics of Interest</strong> include, but are not limited to:
     </p>
 
-    <ul class="cfp-topic-list">
-      <li>AI-assisted and AI-driven database schema design and optimization</li>
+    <div class="cfp-category">
+      <h3>1. Database Schema Design and Evolution</h3>
+      <ul class="cfp-topic-list">
+        <li>AI-assisted and AI-driven database schema design and optimization</li>
+        <li>AI-assisted conceptual data modeling</li>
+        <li>Conceptual, logical, and physical database design</li>
+        <li>Schema generation and recommendation</li>
+        <li>AI for schema evolution and data migration</li>
+        <li>Schema matching, integration, transformation, and refactoring</li>
+        <li>AI-assisted temporal schema design and optimization</li>
+        <li>Generic schema design for multi-model databases</li>
+        <li>Schema design for relational, NoSQL, temporal, multi-model, and heterogeneous data systems</li>
+        <li>Denormalization, referencing, and alternative data representation strategies</li>
+      </ul>
+    </div>
 
-      <li>AI for schema evolution and data migration</li>
+    <div class="cfp-category">
+      <h3>2. Schema Optimization, Query Optimization, and Adaptive Tuning</h3>
+      <ul class="cfp-topic-list">
+        <li>Workload-aware and query-driven schema optimization</li>
+        <li>Query optimization, including AI-assisted and learned approaches</li>
+        <li>Joint query and schema/physical design optimization</li>
+        <li>Online approaches for full autonomic schema tuning</li>
+        <li>AI for proactive schema design and tuning</li>
+        <li>Adaptive schema reconfiguration under workload and data changes</li>
+        <li>Indexing, partitioning, clustering, sharding, replication, and materialized-view selection</li>
+        <li>Storage-layout and physical-design optimization</li>
+        <li>Controlling tuning overhead and avoiding unnecessary reactions to temporary workload changes</li>
+        <li>Cost/performance trade-offs in database design and tuning</li>
+      </ul>
+    </div>
 
-      <li>AI-assisted temporal schema design and optimization</li>
+    <div class="cfp-category">
+      <h3>3. AI and Learning for Database Design and Optimization</h3>
+      <ul class="cfp-topic-list">
+        <li>Machine learning for logical and physical database design</li>
+        <li>Learned cost models for schema design and optimization</li>
+        <li>Learning-based search strategies for large schema design spaces</li>
+        <li>Reinforcement learning for database design and tuning</li>
+        <li>LLMs and generative AI for data modeling and schema design</li>
+        <li>Prediction of workload and database evolution</li>
+        <li>Human-in-the-loop and explainable AI-assisted schema design</li>
+        <li>Trustworthy and controllable autonomous database design</li>
+      </ul>
+    </div>
 
-      <li>AI-assisted conceptual data modeling</li>
-
-      <li>Machine learning for logical and physical database design</li>
-
-      <li>Learned cost models for schema evaluation</li>
-
-      <li>Learning-based search strategies for large schema design spaces</li>
-
-      <li>Workload-aware and query-driven schema optimization</li>
-
-      <li>Online approaches for full autonomic schema tuning</li>
-
-      <li>AI for proactive schema design and tuning</li>
-
-      <li>Generic schema design for multi-model databases</li>
-
-      <li>Human-in-the-loop and explainable AI-assisted schema design</li>
-
-      <li>Benchmarks for any of the topics above</li>
-    </ul>
+    <div class="cfp-category">
+      <h3>4. Systems, Tools, and Evaluation</h3>
+      <ul class="cfp-topic-list">
+        <li>Automated database design and tuning tools and prototypes</li>
+        <li>Industrial experiences and real-world deployments</li>
+        <li>Empirical studies of database design and optimization</li>
+        <li>Evaluation methodologies for adaptive and autonomous database systems</li>
+        <li>Reproducibility and comparative studies</li>
+        <li>Benchmarks for any of the topics above</li>
+      </ul>
+    </div>
 
   </div>
 </section>

@@ -363,8 +363,8 @@
     /* Speakers and organizers */
     .speaker-grid{
       display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:20px
+      grid-template-columns:1fr;
+      gap:26px
     }
     .speaker-card{
       background:#fff;
@@ -388,6 +388,45 @@
     }
     .affiliation{margin:2px 0 11px;font-size:.96rem}
     .talk{color:var(--ink)!important;font-weight:650;margin:0}
+
+    .speaker-card-detailed{
+      display:block;
+    }
+
+    .speaker-header{
+      display:grid;
+      grid-template-columns:120px 1fr;
+      gap:22px;
+      align-items:start;
+    }
+
+    .speaker-card-detailed .person-photo{
+      width:120px;
+      height:120px;
+    }
+
+    .speaker-description{
+      margin-top:24px;
+      padding-top:22px;
+      border-top:1px solid var(--line);
+    }
+
+    .speaker-description h4{
+      margin:24px 0 10px;
+      color:var(--navy);
+      font-size:1.08rem;
+    }
+
+    .speaker-description h4:first-child{
+      margin-top:0;
+    }
+
+    .speaker-description p{
+      margin:0 0 16px;
+      line-height:1.8;
+      text-align:justify;
+      text-justify:inter-word;
+    }
 
     .discussion{
       background:linear-gradient(135deg,var(--navy2),var(--navy));
@@ -479,6 +518,8 @@
       .date-grid,.speaker-grid,.pc-grid{grid-template-columns:1fr}
       .speaker-card{grid-template-columns:84px 1fr}
       .speaker-card .person-photo{width:84px;height:84px}
+      .speaker-header{grid-template-columns:84px 1fr}
+      .speaker-card-detailed .person-photo{width:84px;height:84px}
     }
   
     /* Temporary review gate */

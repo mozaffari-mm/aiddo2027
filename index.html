@@ -282,33 +282,41 @@
       padding-left:20px;
       color:var(--muted)
     }
+    /* Submission */
+    #submission h3 {
+      margin-top:28px;
+      margin-bottom:12px;
+      font-size:1.25rem;
+      color:var(--navy);
+    }
 
-    /* Format */
-    .format-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:14px;
-      margin-top:22px
+    .submission-intro {
+      max-width:1100px;
     }
-    .format-card{
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:14px;
-      padding:20px
+
+    .submission-types {
+      margin:18px 0 34px;
+      padding-left:28px;
+      color:var(--muted);
+      line-height:1.8;
     }
-    .format-card strong{display:block;font-size:1rem}
-    .format-card span{color:var(--muted);font-size:.88rem}
-    .review-box{
-      margin-top:22px;
-      background:var(--navy);
-      color:#fff;
-      border-radius:var(--radius);
-      padding:26px 28px
+
+    .submission-types li {
+      margin-bottom:6px;
     }
-    .review-box h3{color:#fff;margin-bottom:12px}
-    .review-box li{color:#dce8f2}
-    .review-box ul{margin-bottom:0}
-    .note{font-size:.88rem;margin-top:16px}
+
+    .submission-types strong {
+      color:var(--ink);
+    }
+
+    .submission-heading {
+      margin-top:40px !important;
+    }
+
+    .submission-note {
+      margin-top:18px;
+      font-size:.92rem;
+    }
 
     /* Dates */
     .date-grid{
@@ -420,7 +428,6 @@
 
     @media(max-width:1000px){
       .about-grid,.cfp-intro{grid-template-columns:1fr}
-      .format-grid{grid-template-columns:1fr}
       .date-grid{grid-template-columns:repeat(2,1fr)}
       .organizer-grid{grid-template-columns:1fr}
     }
@@ -553,7 +560,7 @@
     <nav class="main-nav" id="main-nav" aria-label="Primary navigation">
       <a href="#about">About</a>
       <a href="#cfp">Call for Papers</a>
-      <a href="#format">Workshop Format</a>
+      <a href="#submission">Submission</a>
       <a href="#dates">Important Dates</a>
       <a href="#speakers">Invited Talks</a>
       <a href="#organization">Organization</a>
@@ -699,43 +706,44 @@
   </div>
 </section>
 
-<section class="section" id="format">
+<section class="section" id="submission">
   <div class="container">
-    <h2>Workshop Format</h2>
+    <h2>Submission</h2>
 
-    <p class="prose">
-      AIDDO is planned as a half-day workshop combining peer-reviewed research
-      presentations, two invited talks, and an interactive discussion.
+    <h3>Format</h3>
+
+    <p class="submission-intro">
+      AIDDO will be held as a half-day workshop at ICDE 2027.
+      Accepted papers will be published in the joint ICDE workshop proceedings.
     </p>
 
-    <div class="format-grid">
-      <div class="format-card">
-        <strong>Full research papers</strong>
-        <span>Up to 8 pages plus references</span>
-      </div>
-      <div class="format-card">
-        <strong>Short papers</strong>
-        <span>Up to 4 pages plus references</span>
-      </div>
-      <div class="format-card">
-        <strong>Extended abstracts</strong>
-        <span>Up to 2 pages plus references</span>
-      </div>
-    </div>
+    <p>
+      The workshop accepts research and industrial contributions in the following formats:
+    </p>
 
-    <div class="review-box">
-      <h3>Review process</h3>
-      <ul>
-        <li>Each submission will receive at least three reviews.</li>
-        <li>Evaluation will consider relevance, originality, technical quality, clarity, and discussion potential.</li>
-        <li>Conflicts of interest will be handled according to IEEE/ICDE principles.</li>
-        <li>Accepted papers will follow ICDE workshop publication requirements and appear in the joint ICDE workshop proceedings.</li>
-      </ul>
-    </div>
+    <ul class="submission-types">
+      <li><strong>Full research papers:</strong> up to <strong>8 pages</strong> + references (no appendix)</li>
+      <li><strong>Short papers:</strong> up to <strong>4 pages</strong> + references (no appendix)</li>
+      <li><strong>Extended abstracts:</strong> up to <strong>2 pages</strong> + references (no appendix)</li>
+    </ul>
 
-    <p class="note">
-      Final submission-system and formatting instructions will be posted once
-      confirmed with the ICDE Workshop and Proceedings Chairs.
+    <h3 class="submission-heading">Submission Instructions</h3>
+
+    <p>
+      Manuscripts must be written in English and submitted in PDF format.
+      Papers must be prepared according to the
+      <a href="https://www.ieee.org/conferences/publishing/templates.html"
+         target="_blank" rel="noopener">official IEEE conference template</a>
+      used for ICDE 2027.
+    </p>
+
+    <p>
+      <strong>Submission site:</strong> To be announced.
+    </p>
+
+    <p class="submission-note">
+      Additional submission and camera-ready instructions will be posted
+      once they are confirmed with the ICDE Workshop and Proceedings Chairs.
     </p>
   </div>
 </section>
@@ -765,8 +773,7 @@
     </div>
 
     <p class="note">
-      The deadlines will be coordinated with the ICDE Workshop and Proceedings
-      Chairs and adjusted if required.
+      All deadlines are <strong>23:59 AoE</strong> (Anywhere on Earth).
     </p>
   </div>
 </section>
